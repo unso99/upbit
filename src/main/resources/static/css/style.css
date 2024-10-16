@@ -1,0 +1,53 @@
+/* resources/static/css/style.css */
+
+body {
+    background-color: #1b1f2b;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffcc00;
+}
+
+.account-info, .bitcoin-chart, .coin-info {
+    background-color: #2b2f3a;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.account-info h2, .bitcoin-chart h2, .coin-info h2 {
+    color: #ffcc00;
+}
+
+.coin-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.coin-info table, .coin-info th, .coin-info td {
+    border: 1px solid #444;
+}
+
+.coin-info th, .coin-info td {
+    padding: 10px;
+    text-align: left;
+}
+
+.coin-info th {
+    background-color: #333;
+}
+
+.coin-info td {
+    background-color: #2b2f3a;
+}
