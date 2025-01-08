@@ -30,24 +30,26 @@ h1 {
     color: #ffcc00;
 }
 
-.coin-info table {
-    width: 100%;
-    border-collapse: collapse;
+/* 코인 리스트 스타일링 */
+.coin-info {
+    max-height: 400px;  /* 리스트의 최대 높이를 설정 */
+    overflow-y: auto;  /* 내용이 넘칠 경우 세로 스크롤 추가 */
 }
 
-.coin-info table, .coin-info th, .coin-info td {
+.coin-list {
+    list-style: none;
+    padding: 0;
+}
+
+.coin-list li {
+    background-color: #2b2f3a;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
     border: 1px solid #444;
 }
 
-.coin-info th, .coin-info td {
-    padding: 10px;
-    text-align: left;
+.coin-list li strong {
+    color: #ffcc00;
 }
 
-.coin-info th {
-    background-color: #333;
-}
-
-.coin-info td {
-    background-color: #2b2f3a;
-}

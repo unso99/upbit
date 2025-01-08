@@ -1,4 +1,4 @@
-package com.example.upbit.Dto;
+package com.example.upbit.model.dto;
 
 import lombok.Getter;
 

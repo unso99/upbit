@@ -14,50 +14,40 @@
   <!-- 계좌 내역 섹션 -->
   <div class="account-info">
     <h2>My Account Info</h2>
-    <p>Available Balance: <strong th:text="${availableBalance}">1.234 BTC</strong></p>
+    <p>Available Balance: <strong th:text="${availableBalance}"></strong></p>
   </div>
 
   <!-- 비트코인 차트 섹션 -->
   <div class="bitcoin-chart">
     <h2>Bitcoin Chart</h2>
     <p>(Chart would be here)</p>
-    <p>Price: <strong>$32,500</strong></p>
-    <p>24h Change: <strong>+3.5%</strong></p>
+    <p>Price: <strong th:text="${BTC.trade_price_format}"></strong></p>
+    <p>24h Change: <strong th:text="${BTC.signed_change_rate_format}"></strong></p>
   </div>
 
   <!-- 다른 코인들의 정보 섹션 -->
   <div class="coin-info">
     <h2>Other Coins Info</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Coin</th>
-        <th>Price</th>
-        <th>24h Change</th>
-        <th>Market Cap</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Ethereum (ETH)</td>
-        <td>$2,100</td>
-        <td>+2.1%</td>
-        <td>$250 Billion</td>
-      </tr>
-      <tr>
-        <td>Ripple (XRP)</td>
-        <td>$1.05</td>
-        <td>-1.5%</td>
-        <td>$50 Billion</td>
-      </tr>
-      <tr>
-        <td>Litecoin (LTC)</td>
-        <td>$150</td>
-        <td>+1.0%</td>
-        <td>$10 Billion</td>
-      </tr>
-      </tbody>
-    </table>
+    <ul class="coin-list">
+      <li th:each="ticker : ${tickers}">
+        <strong th:text="${ticker.market}"></strong><br>
+        Price: <span th:text="${ticker.trade_price_format}"></span> |
+        24h Change: <span th:text="${ticker.signed_change_rate_format}"></span> |
+        24h Volume : <span th:text="${ticker.acc_trade_volume_format}">
+      </li>
+      <li>
+        <strong>Ethereum (ETH)</strong><br>
+        $2,100 | 24h Change: +2.1% | Market Cap: $250 Billion
+      </li>
+      <li>
+        <strong>Ripple (XRP)</strong><br>
+        Price: $1.05 | 24h Change: -1.5% | Market Cap: $50 Billion
+      </li>
+      <li>
+        <strong>Litecoin (LTC)</strong><br>
+        Price: $150 | 24h Change: +1.0% | Market Cap: $10 Billion
+      </li>
+    </ul>
   </div>
 </div>
 </body>

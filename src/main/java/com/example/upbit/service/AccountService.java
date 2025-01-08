@@ -2,8 +2,8 @@ package com.example.upbit.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.upbit.Dto.MyAccountDto;
-import com.example.upbit.Dto.MyBankDto;
+import com.example.upbit.model.dto.MyAccountDto;
+import com.example.upbit.model.dto.MyBankDto;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
