@@ -30,6 +30,34 @@ h1 {
     color: #ffcc00;
 }
 
+/* 코인 섹션의 헤더 (h2와 필터 버튼) 레이아웃 */
+.coin-header {
+    display: flex;
+    justify-content: space-between; /* h2 텍스트와 필터 버튼을 양 끝으로 배치 */
+    align-items: center;            /* 세로축 가운데 정렬 */
+    margin-bottom: 10px;
+}
+
+/* 필터 버튼 스타일링 */
+.filter-buttons {
+    display: flex;  /* 필터 버튼을 한 줄로 배치 */
+    gap: 10px;      /* 버튼 간격 */
+}
+
+.filter-buttons button {
+    background-color: #ffcc00;
+    border: none;
+    color: #1b1f2b;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filter-buttons button:hover {
+    background-color: #e6b800;
+}
+
 /* 코인 리스트 스타일링 */
 .coin-info {
     max-height: 400px;  /* 리스트의 최대 높이를 설정 */
