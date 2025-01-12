@@ -20,7 +20,7 @@
   <!-- 비트코인 차트 섹션 -->
   <div class="bitcoin-chart">
     <h2>Bitcoin Chart</h2>
-    <p>(Chart would be here)</p>
+    <button class="chart-button" th:onclick="|location.href='@{/chart}'|">Go to Chart</button>
     <p>Price: <strong th:text="${BTC.trade_price_format}"></strong></p>
     <p>24h Change: <strong th:text="${BTC.signed_change_rate_format}"></strong></p>
   </div>

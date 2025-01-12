@@ -81,3 +81,72 @@ h1 {
     color: #ffcc00;
 }
 
+/* 차트 버튼 스타일링 */
+.chart-button {
+    background-color: #ffcc00;
+    border: none;
+    color: #1b1f2b;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.chart-button:hover {
+    background-color: #e6b800;
+}
+
+/* 전체 컨테이너 */
+.chart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 헤더 */
+header h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 차트 섹션 */
+.chart-section {
+    position: relative;
+    margin: 20px 0;
+    height: 400px;
+    width: 100%;
+}
+
+/* 시간 범위 선택 섹션 */
+.time-range {
+    margin: 20px 0;
+}
+
+.time-range select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* 업데이트 버튼 */
+.update-button {
+    margin: 20px 0;
+}
+
+.update-button button {
+    background-color: #ffcc00;
+    border: none;
+    color: #1b1f2b;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.update-button button:hover {
+    background-color: #e6b800;
+}
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Chart</title>
+  <!-- 외부 CSS 파일 링크  -->
+  <link th:href="@{/css/style.css}" rel="stylesheet" >
+</head>
+<body>
+<div class="chart-container">
+  <header>
+    <h1>Bitcoin Price Chart</h1>
+  </header>
+
+  <!-- 차트를 그릴 캔버스 -->
+  <div class="chart-section">
+    <canvas id="bitcoinChart"></canvas>
+  </div>
+
+  <!-- 시간 범위 선택 옵션 -->
+  <div class="time-range">
+    <label for="rangeSelect">Select Time Range:</label>
+    <select id="rangeSelect" onchange="updateChart()">
+      <option value="1d">1 Day</option>
+      <option value="7d">1 Week</option>
+      <option value="1m">1 Month</option>
+      <option value="1y">1 Year</option>
+    </select>
+  </div>
+
+  <!-- 차트 업데이트 버튼 -->
+  <div class="update-button">
+    <button onclick="updateChart()">Update Chart</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/chartScript.js"></script>
+</body>
+</html>
