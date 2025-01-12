@@ -5,37 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bitcoin Chart</title>
   <!-- 외부 CSS 파일 링크  -->
-  <link th:href="@{/css/style.css}" rel="stylesheet" >
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+  <script th:inline="javascript">
+    async function onLoad(unit) {
+            let market = [[${ticker}]];
+            let res = await getBitPrice({count: 200, market, unit});
+            drawChart(res.trace, res.info);
+        }
+    async function getBitPrice({count, market, unit}) {
+            let url = '';
+            if (unit == 1440) {
+              url = `https://api.upbit.com/v1/candles/days?market=${market}&count=${count}`;
+            } else {
+              url = `https://api.upbit.com/v1/candles/minutes/${unit}?market=${market}&count=${count}`;
+            }
+
+            const response = await fetch(url);
+            const prices = await response.json();
+
+            let pricesSorted = prices.sort((a, b) => a.timestamp - b.timestamp);    // 시간순으로 정렬
+
+            let x = [];
+            let high = [];
+            let low = [];
+            let open = [];
+            let close = [];
+
+            let info = {};
+            // 차트 그릴 때, 최소, 최대값 range를 설정하기 위해.
+            lowest_price = pricesSorted[0].low_price;
+            highest_price = pricesSorted[0].high_price;
+            pricesSorted.forEach((p) => {
+                x.push(p.candle_date_time_kst);
+                high.push(p.high_price);
+                low.push(p.low_price);
+                open.push(p.opening_price);
+                close.push(p.trade_price);
+
+                lowest_price = lowest_price > p.low_price ? p.low_price : lowest_price;
+                highest_price = highest_price < p.high_price ? p.high_price : highest_price;
+            })
+
+            info = {
+                lowest_price,
+                highest_price,
+                market
+            }
+
+            // 차트 그릴 때 필요로 하는 정보들. 캔들값을 배열로.
+            let trace = {
+                x,
+                high,
+                low,
+                open,
+                close,
+                decreasing: {line: {color: 'blue'}},
+                increasing: {line: {color: 'red'}},
+                line: {color: 'rgba(31,119,180,1)'},
+                type: 'candlestick',
+                xaxis: 'x',
+                yaxis: 'y'
+            }
+            return {trace, info};
+        }
+
+        function drawChart(trace, info) {
+            var data = [trace];
+
+            var layout = {
+                dragmode: 'zoom',
+                margin: {
+                    r: 10,
+                    t: 25,
+                    b: 40,
+                    l: 60
+                },
+                showlegend: false,
+                xaxis: {
+                    autorange: true,
+                    domain: [0, 1],
+                    //range: ['2017-01-03 12:00', '2017-02-15 12:00'],
+                    range: [trace.x[0], trace.x[trace.x.length - 1]],
+                    rangeslider: {range: [trace.x[0], trace.x[trace.x.length - 1]]},
+                    title: info.market,
+                    type: 'date',
+                    rangeslider: {
+                        visible: false
+                    }
+                },
+                yaxis: {
+                    autorange: true,
+                    domain: [0, 1],
+                    range: [info.lowest_price * 0.95, info.highest_price * 1.05],
+                    type: 'linear'
+                }
+            };
+
+            Plotly.newPlot('chartDiv', data, layout);
+            }
+
+  </script>
 </head>
-<body>
+<body onload="onLoad(1440)">
 <div class="chart-container">
   <header>
-    <h1>Bitcoin Price Chart</h1>
+    <h1 th:text="${ticker} + ' Price Chart'"></h1>
   </header>
 
   <!-- 차트를 그릴 캔버스 -->
   <div class="chart-section">
-    <canvas id="bitcoinChart"></canvas>
+    <div id="chartDiv"></div>
   </div>
 
   <!-- 시간 범위 선택 옵션 -->
   <div class="time-range">
     <label for="rangeSelect">Select Time Range:</label>
-    <select id="rangeSelect" onchange="updateChart()">
-      <option value="1d">1 Day</option>
-      <option value="7d">1 Week</option>
-      <option value="1m">1 Month</option>
-      <option value="1y">1 Year</option>
+    <select id="rangeSelect" onchange="onLoad(this.value)">
+      <option value="1440">1 Day</option>
+      <option value="240">4 Hour</option>
+      <option value="60">1 Hour</option>
+      <option value="15">15 Minute</option>
+      <option value="5">5 Minute</option>
+      <option value="1">1 Minute</option>
     </select>
   </div>
-
-  <!-- 차트 업데이트 버튼 -->
-  <div class="update-button">
-    <button onclick="updateChart()">Update Chart</button>
-  </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/static/chartScript.js"></script>
 </body>
 </html>

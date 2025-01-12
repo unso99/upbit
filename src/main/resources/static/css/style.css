@@ -114,10 +114,7 @@ header h1 {
 
 /* 차트 섹션 */
 .chart-section {
-    position: relative;
-    margin: 20px 0;
-    height: 400px;
-    width: 100%;
+    overflow-y: auto;
 }
 
 /* 시간 범위 선택 섹션 */
@@ -130,23 +127,28 @@ header h1 {
     font-size: 16px;
 }
 
-/* 업데이트 버튼 */
-.update-button {
-    margin: 20px 0;
+/* 헤더의 h1 텍스트 스타일 */
+header h1 {
+    color: #ffcc00;  /* 밝은 노란색으로 변경 */
+    font-size: 32px; /* 폰트 크기를 더 키움 */
+    font-weight: bold; /* 굵은 폰트 적용 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자를 추가하여 더 선명하게 보이도록 함 */
+    margin-bottom: 20px;
 }
 
-.update-button button {
-    background-color: #ffcc00;
-    border: none;
-    color: #1b1f2b;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+/* 클릭 가능한 리스트 항목 스타일 */
+.ticker-row {
+    cursor: pointer; /* 마우스를 올리면 포인터 커서로 변경 */
 }
 
-.update-button button:hover {
-    background-color: #e6b800;
+/* 마우스를 올렸을 때 스타일 변화 */
+.ticker-row:hover {
+    background-color: #333;  /* 어두운 배경 색으로 변경 */
+    padding: 10px;  /* 여백 추가로 클릭 영역 확대 */
 }
 
+/* 클릭된 상태에서 스타일 변화 */
+.ticker-row:active {
+    background-color: #555;  /* 클릭된 항목을 어두운 색으로 변경 */
+}
 

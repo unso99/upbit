@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Crypto Exchange - Home</title>
   <!-- 외부 CSS 파일 링크  -->
-  <link th:href="@{/css/style.css}" rel="stylesheet" >
+  <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -36,7 +36,10 @@
       </div>
     </div>
     <ul class="coin-list" id="ticker-list">
-      <li th:each="ticker : ${tickers}" th:attr="value=${ticker.acc_trade_price},change=${ticker.signed_change_rate}" class="ticker-row">
+      <li th:each="ticker : ${tickers}"
+          th:attr="value=${ticker.acc_trade_price},change=${ticker.signed_change_rate}"
+          class="ticker-row"
+          th:onclick="|location.href='@{/chart(ticker=${ticker.market})}'|">
         <strong th:text="${ticker.market}"></strong><br>
         Price: <span th:text="${ticker.trade_price_format}"></span> |
         24h Change: <span th:text="${ticker.signed_change_rate_format}"></span> |
@@ -107,6 +110,7 @@
     itemsContainer.innerHTML = '';
     tickersArray.forEach(item => itemsContainer.appendChild(item));
   }
+
 </script>
 </body>
 </html>
